@@ -3,6 +3,7 @@ import ResolutionCard from "@/components/ResolutionCard";
 import ResolutionDialog from "@/components/ResolutionDialog";
 import { Resolution } from "@/types/resolution";
 import { useToast } from "@/components/ui/use-toast";
+import { Plus } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -95,25 +96,27 @@ const Resolutions = () => {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
-      <div className="container mx-auto px-4 py-8">
-        <div className="space-y-6">
+    <div className="min-h-screen bg-neutral-50">
+      <div className="container mx-auto px-4 pt-20 pb-8">
+        <div className="space-y-6 max-w-4xl mx-auto">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
-              2025 Resolutions
-            </h1>
+            <div>
+              <h1 className="text-2xl font-bold text-neutral-800">Today's Resolutions</h1>
+              <p className="text-neutral-600 mt-1">Track and manage your goals for 2025</p>
+            </div>
             <button
               onClick={() => {
                 setSelectedResolution(undefined);
                 setDialogOpen(true);
               }}
-              className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-colors"
+              className="flex items-center gap-2 bg-primary hover:bg-accent text-white px-4 py-2 rounded-lg transition-colors"
             >
+              <Plus className="w-4 h-4" />
               Add Resolution
             </button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-4">
             {resolutions.map((resolution) => (
               <ResolutionCard
                 key={resolution.id}
@@ -147,7 +150,12 @@ const Resolutions = () => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmDelete}>Delete</AlertDialogAction>
+            <AlertDialogAction 
+              onClick={confirmDelete}
+              className="bg-destructive hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
