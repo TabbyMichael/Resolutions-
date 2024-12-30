@@ -1,62 +1,52 @@
 import { useState } from "react";
-import { Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import ResolutionCard from "@/components/ResolutionCard";
 import { Resolution } from "@/types/resolution";
 
 const Resolutions = () => {
-  const [resolutions, setResolutions] = useState<Resolution[]>([
+  const [resolutions] = useState<Resolution[]>([
     {
       id: "1",
       title: "Learn a New Programming Language",
-      description: "Master Python for data science and machine learning projects",
-      targetDate: new Date("2025-12-31"),
-      timeSpent: 120, // 2 hours
-      category: "professional",
+      description: "Master Python through online courses and personal projects",
+      category: "Education",
+      startDate: new Date(2025, 0, 1),
+      targetDate: new Date(2025, 11, 31),
+      timeSpent: 2400, // 40 hours
       status: "in-progress",
-      createdAt: new Date("2024-01-01"),
-      updatedAt: new Date("2024-01-01")
+      progress: 45,
     },
     {
       id: "2",
       title: "Exercise Regularly",
-      description: "Work out at least 3 times a week and maintain a healthy lifestyle",
-      targetDate: new Date("2025-12-31"),
-      timeSpent: 360, // 6 hours
-      category: "health",
+      description: "Maintain a consistent workout routine 3 times per week",
+      category: "Health",
+      startDate: new Date(2025, 0, 1),
+      targetDate: new Date(2025, 11, 31),
+      timeSpent: 3600, // 60 hours
       status: "in-progress",
-      createdAt: new Date("2024-01-01"),
-      updatedAt: new Date("2024-01-01")
-    }
+      progress: 30,
+    },
+    // Add more sample resolutions as needed
   ]);
 
-  const handleResolutionClick = (resolution: Resolution) => {
-    console.log("Resolution clicked:", resolution);
-    // TODO: Open resolution details modal
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-neutral-100 pt-20">
-      <div className="container-padding max-w-5xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold mb-2">2025 Resolutions</h1>
-            <p className="text-neutral-600">Track and achieve your goals for the year ahead</p>
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
+      <div className="container mx-auto px-4 py-8">
+        <div className="space-y-6">
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
+              2025 Resolutions
+            </h1>
+            <button className="bg-accent hover:bg-accent/90 text-white px-4 py-2 rounded-lg transition-colors">
+              Add Resolution
+            </button>
           </div>
-          <Button className="bg-accent hover:bg-accent/90">
-            <Plus className="w-4 h-4 mr-2" />
-            New Resolution
-          </Button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {resolutions.map((resolution) => (
-            <ResolutionCard
-              key={resolution.id}
-              resolution={resolution}
-              onClick={handleResolutionClick}
-            />
-          ))}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {resolutions.map((resolution) => (
+              <ResolutionCard key={resolution.id} resolution={resolution} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

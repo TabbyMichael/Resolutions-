@@ -1,50 +1,74 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+import { Clock, Calendar, Target } from "lucide-react";
 import { Resolution } from "@/types/resolution";
-import { Clock, CheckCircle2, Circle, PlayCircle } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, format } from "date-fns";
 
 interface ResolutionCardProps {
   resolution: Resolution;
-  onClick: (resolution: Resolution) => void;
 }
 
-const ResolutionCard = ({ resolution, onClick }: ResolutionCardProps) => {
-  const getStatusIcon = () => {
-    switch (resolution.status) {
-      case 'completed':
-        return <CheckCircle2 className="w-5 h-5 text-green-500" />;
+const ResolutionCard = ({ resolution }: ResolutionCardProps) => {
+  const getStatusColor = (status: Resolution['status']) => {
+    switch (status) {
+      case 'not-started':
+        return 'bg-neutral-500';
       case 'in-progress':
-        return <PlayCircle className="w-5 h-5 text-blue-500" />;
+        return 'bg-blue-500';
+      case 'completed':
+        return 'bg-green-500';
       default:
-        return <Circle className="w-5 h-5 text-gray-500" />;
+        return 'bg-neutral-500';
     }
   };
 
-  const formatTime = (minutes: number) => {
+  const formatTimeSpent = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
     return `${hours}h ${remainingMinutes}m`;
   };
 
   return (
-    <Card 
-      className="hover:shadow-lg transition-all cursor-pointer bg-white/50 backdrop-blur-sm border border-neutral-200"
-      onClick={() => onClick(resolution)}
-    >
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-lg font-semibold">{resolution.title}</CardTitle>
-        {getStatusIcon()}
+    <Card className="w-full hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-neutral-800">
+      <CardHeader>
+        <div className="flex justify-between items-start">
+          <div>
+            <CardTitle className="text-xl font-bold">{resolution.title}</CardTitle>
+            <CardDescription className="mt-2">{resolution.description}</CardDescription>
+          </div>
+          <Badge className={`${getStatusColor(resolution.status)} text-white`}>
+            {resolution.status.replace('-', ' ')}
+          </Badge>
+        </div>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-neutral-600 mb-4 line-clamp-2">{resolution.description}</p>
-        <div className="flex items-center justify-between text-sm">
-          <div className="flex items-center gap-1 text-neutral-500">
-            <Clock className="w-4 h-4" />
-            {formatTime(resolution.timeSpent)}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between text-sm text-neutral-600 dark:text-neutral-300">
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
+              <span>Time Spent: {formatTimeSpent(resolution.timeSpent)}</span>
+            </div>
+            <Badge variant="outline">{resolution.category}</Badge>
           </div>
-          <span className="text-neutral-400">
-            Created {formatDistanceToNow(resolution.createdAt)} ago
-          </span>
+          
+          <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
+            <Calendar className="w-4 h-4" />
+            <span>Started: {format(resolution.startDate, 'MMM d, yyyy')}</span>
+          </div>
+          
+          <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
+            <Target className="w-4 h-4" />
+            <span>Target: {format(resolution.targetDate, 'MMM d, yyyy')}</span>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm">
+              <span>Progress</span>
+              <span>{resolution.progress}%</span>
+            </div>
+            <Progress value={resolution.progress} className="h-2" />
+          </div>
         </div>
       </CardContent>
     </Card>
