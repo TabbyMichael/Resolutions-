@@ -5,6 +5,7 @@ import { Clock, Calendar, Target, Pencil, Trash2, CheckCircle2 } from "lucide-re
 import { Resolution } from "@/types/resolution";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
+import { categories } from "@/data/categories";
 
 interface ResolutionCardProps {
   resolution: Resolution;
@@ -13,6 +14,8 @@ interface ResolutionCardProps {
 }
 
 const ResolutionCard = ({ resolution, onEdit, onDelete }: ResolutionCardProps) => {
+  const category = categories.find(cat => cat.id === resolution.category);
+
   const getStatusColor = (status: Resolution['status']) => {
     switch (status) {
       case 'not-started':
@@ -77,9 +80,18 @@ const ResolutionCard = ({ resolution, onEdit, onDelete }: ResolutionCardProps) =
               <Target className="w-4 h-4" />
               <span>{format(resolution.targetDate, 'MMM d')}</span>
             </div>
-            <Badge variant="outline" className="ml-auto">
-              {resolution.category}
-            </Badge>
+            {category && (
+              <Badge 
+                variant="outline" 
+                className="ml-auto"
+                style={{ 
+                  borderColor: category.color,
+                  color: category.color
+                }}
+              >
+                {category.name}
+              </Badge>
+            )}
           </div>
 
           <div className="space-y-2">
