@@ -89,7 +89,7 @@ const ResolutionCard = ({ resolution, onEdit, onDelete }: ResolutionCardProps) =
             </div>
             <Progress 
               value={resolution.progress} 
-              className="h-1.5 bg-neutral-100" 
+              className="h-1.5 bg-neutral-100"
               indicatorClassName="bg-primary"
             />
           </div>
