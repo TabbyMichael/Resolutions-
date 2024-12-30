@@ -1,15 +1,18 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Calendar, Target } from "lucide-react";
+import { Clock, Calendar, Target, Pencil, Trash2 } from "lucide-react";
 import { Resolution } from "@/types/resolution";
-import { formatDistanceToNow, format } from "date-fns";
+import { format } from "date-fns";
+import { Button } from "@/components/ui/button";
 
 interface ResolutionCardProps {
   resolution: Resolution;
+  onEdit: (resolution: Resolution) => void;
+  onDelete: (id: string) => void;
 }
 
-const ResolutionCard = ({ resolution }: ResolutionCardProps) => {
+const ResolutionCard = ({ resolution, onEdit, onDelete }: ResolutionCardProps) => {
   const getStatusColor = (status: Resolution['status']) => {
     switch (status) {
       case 'not-started':
@@ -37,9 +40,27 @@ const ResolutionCard = ({ resolution }: ResolutionCardProps) => {
             <CardTitle className="text-xl font-bold">{resolution.title}</CardTitle>
             <CardDescription className="mt-2">{resolution.description}</CardDescription>
           </div>
-          <Badge className={`${getStatusColor(resolution.status)} text-white`}>
-            {resolution.status.replace('-', ' ')}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge className={`${getStatusColor(resolution.status)} text-white`}>
+              {resolution.status.replace('-', ' ')}
+            </Badge>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onEdit(resolution)}
+              className="h-8 w-8"
+            >
+              <Pencil className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onDelete(resolution.id)}
+              className="h-8 w-8 text-destructive hover:text-destructive"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent>
