@@ -1,71 +1,109 @@
-# Welcome to your GPT Engineer project
+# Resolutions - Your Personal Goal Tracking App 🎯
 
-## Project info
+## Overview
+Resolutions is a modern, user-friendly web application designed to help you track and manage your personal goals and resolutions. Whether you're learning a new skill, focusing on health, or pursuing educational goals, this app provides the perfect platform to monitor your progress.
 
-**URL**: https://run.gptengineer.app/projects/c4d7c99e-db91-46fa-abad-06b6949efbd5/improve
+![App Overview](/public/assets/1.png)
+*Main dashboard overview of the Resolutions app*
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+### 📝 Resolution Management
+- Create and track multiple resolutions
+- Set start and target dates
+- Categorize resolutions (Education, Health, etc.)
+- Monitor progress and time spent
 
-**Use GPT Engineer**
+![Resolution Creation](/public/assets/2.png)
+*Resolution creation interface*
 
-Simply visit the GPT Engineer project at [GPT Engineer](https://gptengineer.app/projects/c4d7c99e-db91-46fa-abad-06b6949efbd5/improve) and start prompting.
+### 📊 Progress Tracking
+- Visual progress indicators
+- Status updates (Not Started, In Progress, Completed)
+- Time tracking functionality
+- Category-based organization
 
-Changes made via gptengineer.app will be committed automatically to this repo.
+![Progress Tracking](/public/assets/3.png)
+*Progress tracking dashboard*
 
-**Use your preferred IDE**
+## 🚀 Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in the GPT Engineer UI.
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn package manager
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/resolutions.git
+cd resolutions
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-**Use GitHub Codespaces**
+4. Open your browser and visit `http://localhost:5173`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🛠️ Tech Stack
+- React.js - Frontend framework
+- TypeScript - Type safety
+- Tailwind CSS - Styling
+- Vite - Build tool
+- Shadcn/ui - UI components
 
-## What technologies are used for this project?
+## 📱 Usage
 
-This project is built with .
+### Creating a Resolution
+1. Click the "Add Resolution" button
+2. Fill in the resolution details:
+   - Title
+   - Description
+   - Category
+   - Start and Target dates
+3. Click "Save Resolution"
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+![Add Resolution](/public/assets/4.png)
+*Adding a new resolution*
 
-## How can I deploy this project?
+### Managing Resolutions
+- Edit existing resolutions by clicking the edit icon
+- Delete resolutions using the delete button
+- Track progress by updating the status and progress bar
 
-All GPT Engineer projects can be deployed directly via the GPT Engineer app.
+## 🤝 Contributing
 
-Simply visit your project at [GPT Engineer](https://gptengineer.app/projects/c4d7c99e-db91-46fa-abad-06b6949efbd5/improve) and click on Share -> Publish.
+We welcome contributions! Here's how you can help:
 
-## I want to use a custom domain - is that possible?
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.gptengineer.app/tips-tricks/custom-domain/)
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+- Shadcn/ui for the beautiful UI components
+- The React community for inspiration and support
+
+## 📞 Support
+
+Having issues? Let us know!
+- Create an issue in the repository
+- Contact us at support@resolutions-app.com
+
+---
